@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    /*for strat adding jquery date picker*/
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  /*for end adding jquery date picker*/
+
+    <!---<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--->
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    <title>Resume Uploader</title>
+</head>
+<body>
+    <div class="container mb-5">
+        <h1 class="alert-danger text-center p-0">Resume Uploader</h1>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <form action="" method="post" enctype="multipart/form-data" class="shadow p-5">
+                    {% csrf_token %}
+                    {% for fm in form %}
+                    <div class="form-group mb-3">
+                        {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors | striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="submit" class="btn btn-primery">
+                    {% if form.non_field_errors %}
+                    <p class="alert alert-danger my-3">{{error}}</p>
+                    
+                    {% endif %}
+                </form>
+
+            </div>
+            <div class="col-sm-4">
+                <h4 class="text-center mb-3"><u>List of Condidate</u></h4>
+            </div>
+
+    </div>
+    </div>
+    
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    /*script start for jquery datepicker */
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+    /*script end for jquery datepicker */
+
+</body>
+</html>
